@@ -1,0 +1,155 @@
+\documentclass[
+	10pt, 
+	oneside, 
+	a4paper,
+	reqno
+]{amsbook}
+
+%Math
+%----
+\usepackage{amssymb}
+%Package for (),[],{},intervals and so on (see documentation)
+\usepackage{commath}
+%Ensures that references are \textup
+\usepackage{upref}
+%Main style theorem environment
+\newtheoremstyle{main} 		             	 		%Stylename
+  	{}	                                     		%Space above
+  	{}	                                    		%Space below
+  	{\itshape}			                     		%Body font
+  	{}        	                             		%Indent
+  	{\bfseries}   	                         		%Head font
+  	{.}            	                        		%Head punctuation
+  	{ }           	                         		%Head space 
+  	{\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}	%Head specification
+\theoremstyle{main}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+%Roman style theorems
+\newtheoremstyle{roman}
+	{}
+	{}
+  	{}
+  	{}
+	{\bfseries}
+	{.}
+  	{ }
+	{\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}
+\theoremstyle{roman}
+\newtheorem{example}{Example}[section]
+%Exercise style theorems
+\newtheoremstyle{exercise}
+  	{}
+  	{}
+  	{\small}
+  	{}
+  	{\bfseries}
+  	{.}
+ 	{ }
+  	{}
+\theoremstyle{exercise}
+\newtheorem{exercise}{Exercise}[section]
+%Special triple norm symbol
+\RequirePackage{ifthen}
+\providecommand{\trivert}[2][-1]{
+\ensuremath{\mathinner{
+\ifthenelse{\equal{#1}{-1}}{ % if
+\!\left\lVert#2\right\rVert}{}
+\ifthenelse{\equal{#1}{0}}{ % if
+	\mathopen{|\mkern-1.5mu|\mkern-1.5mu|}#2\mathclose{|\mkern-1.5mu|\mkern-1.5mu|}}{}
+\ifthenelse{\equal{#1}{1}}{ % if
+\!\bigl\lVert#2\bigr\rVert}{}
+\ifthenelse{\equal{#1}{2}}{ % if
+\!\Bigl\lVert#2\Bigr\rVert}{}
+\ifthenelse{\equal{#1}{3}}{ % if
+\!\biggl\lVert#2\biggr\rVert}{}
+\ifthenelse{\equal{#1}{4}}{ % if
+\!\Biggl\lVert#2\Biggr\rVert}{}
+}}
+}
+\let\trinorm=\trivert
+
+%Math Operators
+%--------------
+\AtBeginDocument{\renewcommand*\d{\mathop{}\!\mathrm{d}}}
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\DeclareMathOperator\Log{Log}
+\DeclareMathOperator\Arg{Arg}
+\DeclareMathOperator\sech{sech}
+\DeclareMathOperator*\esssup{ess.sup}
+\DeclareMathOperator\Int{Int}
+
+%ToC
+%---
+\makeatletter
+\setcounter{tocdepth}{3}
+% Add bold to \chapter titles in ToC and remove . after numbers
+\renewcommand{\tocchapter}[3]{%
+  	\indentlabel{\@ifnotempty{#2}{\bfseries\ignorespaces#1 #2. }}\bfseries#3}
+% Remove . after numbers in \section and \subsection
+\renewcommand{\tocsection}[3]{%
+  	\indentlabel{\@ifnotempty{#2}{\ignorespaces#1 #2\quad}}#3}
+\renewcommand{\tocsubsection}[3]{%
+  	\indentlabel{\@ifnotempty{#2}{\ignorespaces#1 #2\quad}}#3}
+\let\tocsubsubsection\tocsubsection% Update for \subsubsection
+%...
+\newcommand\@dotsep{4.5}
+\def\@tocline#1#2#3#4#5#6#7{\relax
+  \ifnum #1>\c@tocdepth % then omit
+  \else
+    \par \addpenalty\@secpenalty\addvspace{#2}%
+    \begingroup \hyphenpenalty\@M
+    \@ifempty{#4}{%
+      \@tempdima\csname r@tocindent\number#1\endcsname\relax
+    }{%
+      \@tempdima#4\relax
+    }%
+    \parindent\z@ \leftskip#3\relax \advance\leftskip\@tempdima\relax
+    \rightskip\@pnumwidth plus1em \parfillskip-\@pnumwidth
+    #5\leavevmode\hskip-\@tempdima{#6}\nobreak
+    \leaders\hbox{$\m@th\mkern \@dotsep mu\hbox{.}\mkern \@dotsep mu$}\hfill
+    \nobreak
+    \hbox to\@pnumwidth{\@tocpagenum{\ifnum#1=0\bfseries\fi#7}}\par% <-- \bfseries for \chapter page
+    \nobreak
+    \endgroup
+  \fi}
+\AtBeginDocument{%
+\expandafter\renewcommand\csname r@tocindent0\endcsname{0pt}
+}
+\def\l@subsection{\@tocline{2}{0pt}{2.5pc}{5pc}{}}
+\def\l@subsubsection{\@tocline{2}{0pt}{4.5pc}{5pc}{}}
+\makeatother
+
+%Enumerate
+%\usepackage{enumerate}
+\usepackage[dvipsnames]{xcolor}
+
+\usepackage{anyfontsize}
+%Bibliography
+\usepackage[backend=bibtex, style=alphabetic]{biblatex}
+\bibliography{Bibliography}
+\usepackage[bookmarksopen=true,bookmarksnumbered=true]{hyperref}
+%\PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
+\hypersetup{
+  colorlinks   = true, %Colours links instead of ugly boxes
+  urlcolor     = blue, %Colour for external hyperlinks
+  linkcolor    = blue, %Colour of internal links
+  citecolor    = blue %Colour of citations
+}
+%Own commands
+\newcommand{\bld}[1]{\boldmath\textit{\textbf{#1}}\unboldmath}
+%\newcommand{\bld}[1]{\boldmath\textbf{#1}\unboldmath}
+
+\usepackage{setspace}
+\definecolor{ao(english)}{rgb}{0.0, 0.5, 0.0}
+
+
+
+%Enumerations 
+%------------
+\usepackage{enumitem}
+\setlist[enumerate]{label=\textup{(}\roman*\textup{)}}

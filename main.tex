@@ -1,0 +1,57 @@
+\input{header.tex}
+
+\begin{document}
+
+%titlepage
+\pagecolor{ao(english)}
+\color{White}
+
+\begin{titlepage}
+	\begin{center}
+	\fontsize{18}{18}{\textsc{Yannis B\"ahni}}
+	\rule{\linewidth}{0.5mm} \\[0.4cm]
+	\fontsize{50}{50}{\textsc{Introduction to Functional Analysis}}\\
+	%\vspace{2mm}
+	%\fontsize{28}{28}{\textsc{In Applications and Examples}}
+	\rule{\linewidth}{0.5mm} \\[1.5cm]
+	\end{center}
+\end{titlepage}
+%reset colors
+\nopagecolor
+\color{black} 
+
+%Roman page numbering
+\frontmatter
+
+%Half-Title Page
+\thispagestyle{empty}
+	\begin{center}
+	\fontsize{18}{18}{\textsc{Yannis B\"ahni}}
+	\rule{\linewidth}{0.5mm} \\[0.4cm]
+	\fontsize{50}{50}{\textsc{Introduction to Functional Analysis}}\\
+	%\vspace{2mm}
+	%\fontsize{28}{28}{\textsc{In Applications and Examples}}
+	\rule{\linewidth}{0.5mm} \\[1.5cm]
+\end{center}
+\clearpage
+
+\tableofcontents
+\mainmatter
+%Remake Tikz-picture
+%\tikzset{external/force remake}
+
+%\tableofcontents
+%\listoffigures
+
+%Topological Spaces
+\input{topological_spaces.tex}
+%L^p Spaces
+\input{Lp_spaces.tex}
+
+%Appendix
+\appendix
+\begin{appendix}
+\end{appendix}
+
+\printbibliography
+\end{document}

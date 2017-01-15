@@ -1,0 +1,96 @@
+\section{Definitions and Basic Notions}
+\subsection{Topologies}
+
+\begin{definition}
+	Let $X$ be a set. A \bld{topology} on $X$ is a collection $\mathcal{T}$ of subsets of $X$ satisfying the following properties:
+	\begin{enumerate}
+		\item $\varnothing, X \in \mathcal{T}$.
+		\item If $(U_\alpha)_{\alpha \in A}$ is a family of elements of $\mathcal{T}$, then $\bigcup_{\alpha \in A} U_\alpha \in \mathcal{T}$.
+		\item If $U_1,\dots,U_n \in \mathcal{T}$, then $U_1 \cap \dots \cap U_n \in \mathcal{T}$.
+	\end{enumerate}
+
+	A set $X$ for which a topology $\mathcal{T}$ has been specified is called a \bld{topological space} and elements of $\mathcal{T}$ are called \bld{open sets}. 
+\end{definition}
+
+\begin{example}[Topologies]
+	~
+	\begin{enumerate}[label = \textup{(}\alph*\textup{)}]
+		\item Let $(X,\mathcal{T})$ be a topological space and let $S \subseteq X$. Then the collection $\mathcal{T}_S := \cbr[0]{S \cap U : U \in \mathcal{T}}$ is a topology on $S$, since $S = S \cap X \in \mathcal{T}_S$, $\varnothing = S \cap \varnothing \in \mathcal{T}_S$, for any family $(S \cap U_\alpha)_{\alpha \in A}$ we have $\bigcup_{\alpha \in A}(S \cap U_\alpha) = S \cap \bigcup_{\alpha \in A} U_\alpha \in \mathcal{T}_S$ and if $(S \cap U_1) \cap \dots \cap (S \cap U_n) \in \mathcal{T}_S$ we have also $S \cap (U_1 \cap \dots \cap U_n) \in \mathcal{T}_S$. The topology $\mathcal{T}_S$ on $S$ is called the \bld{subspace topology} and $(S,\mathcal{T}_S)$ is called a \bld{subspace} of $(X,\mathcal{T})$.
+	\end{enumerate}
+\end{example}
+
+\begin{definition}
+	Let $(X,\mathcal{T})$ be a topological space and $A \subseteq X$. The \bld{closure of $A$ in $X$}, denoted by $\overline{A}$, is defined by 
+	\begin{equation}
+		\overline{A} := \bigcap\cbr[0]{B \subseteq X : A \subseteq B, B^c \in \mathcal{T}}.
+	\end{equation}
+
+	The \bld{interior of $A$ in $X$}, denoted by $\Int A$, is defined by 
+	\begin{equation}
+		\Int A := \bigcup\cbr[0]{C \subseteq X: C \subseteq A, C \in \mathcal{T}}.	
+	\end{equation}
+\end{definition}
+
+There is an eminent characterization of a point being in the closure of a subset $A \subseteq X$ of a topological space $X$.
+
+\begin{proposition}
+	Let $X$ be a topological space and $A \subseteq X$. Then $x \in \overline{A}$ if and only if the following condition holds: Every neighbourhood $U$ of $x$ contains a point belonging to $A$.
+	\label{prop:characterization_closure}
+\end{proposition}
+
+\begin{proof}
+	Assume that there exists a neighbourhood $U$ of $x$ such that $U \cap A = \varnothing$. Then $U^c$ is closed and $A \subseteq U^c$. But $x \notin U^c$ and thus $x \notin \overline{A}$. Conversly, assume $x \notin \overline{A}$. Thus we find a closed set $B$ such that $A \subseteq B$ and $x \notin B$. But then $B^c$ is open and $B^c \cap A = \varnothing$.
+\end{proof}
+
+\subsection{Continuity and Convergence}
+
+\begin{definition}
+	Let $X$ and $Y$ be two topological spaces and $f: X \to Y$. The map $f$ is said to be \bld{continuous} if for any open set $U \subseteq Y$ we have that $f^{-1}(Y)$ is open in $X$.
+\end{definition}
+
+\begin{exercise}
+	Prove that a mapping $f: X \to Y$ between two topological spaces $X$ and $Y$ is continuous if and only if for all $A \subseteq Y$ closed, $f^{-1}(Y)$ is closed in $X$. \textit{Hint:} Use that for $A,B \subseteq Y$ we have $f^{-1}(A \setminus B) = f^{-1}(A) \setminus f^{-1}(B)$.
+\end{exercise}
+	
+\begin{definition}
+	Let $X$ be a topological space, $(x_n)_{n \in \mathbb{N}}$ be a sequence in $X$ and $x \in X$. The sequence $(x_n)_{n \in \mathbb{N}}$ is said to \bld{converge to $x$} if for every neighbourhood $U$ of $x$ there exists $N \in \mathbb{N}$ such that $x_n \in U$ for any $n > N$. 
+\end{definition}
+
+\begin{corollary}
+	Let $X$ be a topological space and $A \subseteq X$. If $(x_n)_{n \in \mathbb{N}}$ is a convergent sequence in $A$, i.e. $x_n \in A$ for any $n \in \mathbb{N}$, then its limit belongs to $\overline{A}$.
+	\label{cor:sequence_closure}
+\end{corollary}
+
+\begin{proof}
+	This is immediate by the characterization of proposition \ref{prop:characterization_closure}.
+\end{proof}
+
+\subsection{Connectedness and Compactness}
+
+\begin{definition}
+	Let $X$ be a topological space. If $X = U \cup V$ for some disjoint open sets $U,V \neq \varnothing$, $X$ is called \bld{disconnected}, otherwise $X$ is said to be \bld{connected}.
+\end{definition}
+
+\begin{definition}
+	Let $X$ be a topological space. An \bld{open cover} of $X$ is a family $(U_\alpha)_{\alpha \in A}$ of open subsets of $X$ such that $X = \bigcup_{\alpha \in A}U_\alpha$. A \bld{subcover} of $(U_\alpha)_{\alpha \in A}$ is a subfamily $(U_\alpha)_{\alpha \in A'}$, $A' \subseteq A$.	
+\end{definition}
+
+\begin{definition}
+	A topological space $X$ is said to be \bld{compact} if any open cover has a finite subcover.
+\end{definition}
+
+\begin{theorem}[Main Theorem on Compactness]
+	Let $X$ and $Y$ be topological spaces and $f: X \to Y$ be continuous.If $X$ is compact, then $f(X)$ is compact.
+	\label{thm:main_theorem_compactness}
+\end{theorem}
+
+\begin{proposition}
+	Every closed, bounded interval in $\mathbb{R}$ is compact.
+\end{proposition}
+
+\begin{theorem}[Extreme Value Theorem]
+	If $X$ is a compact space and $f: X \to \mathbb{R}$ is continuous, then $f$ is bounded and attains its maximum and minimum values on $X$.
+	\label{thm:extreme_value_theorem}
+\end{theorem}
+
+\section*{Exercises}

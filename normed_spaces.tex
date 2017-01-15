@@ -1,0 +1,69 @@
+\section{Normed Spaces}
+
+\begin{definition}
+	Let $X$ be a real or complex vector space. A mapping 
+	\begin{equation}
+		\norm[0]{\cdot}: X \to \mathbb{R}
+	\end{equation}
+
+	\noindent is called \bld{norm}, if
+
+	\begin{enumerate}
+		\item $\norm[0]{\lambda x} = \abs[0]{\lambda}\norm[0]{x}$ for all $\lambda \in \mathbb{C}$ and $x \in X$.
+		\item $\norm[0]{x + y} \leq \norm[0]{x} + \norm[0]{y}$ for all $x,y \in X$.
+		\item $\norm[0]{x} = 0$ implies $x = 0$.
+	\end{enumerate}
+
+	If only \textup{(}i\textup{)} and \textup{(}ii\textup{)} hold, $\norm[0]{\cdot}$ is called a \bld{seminorm}. If a norm has been specified on a vector space $X$, the tuple $(X,\norm[0]{\cdot})$ is called a \bld{normed space}.
+\end{definition}
+
+\begin{definition}
+	Two norms $\norm[0]{\cdot}$ and $\trinorm[0]{x}$ are said to be \bld{equivalent} if the induced metrics are strongly equivalent.
+\end{definition}
+
+There is a usefull result in the finite dimenisonal case (see \cite[26]{werner:funktionalanalysis:2011}).
+
+\begin{theorem}
+	Let $X$ be a finite dimensional real or complex vector space. Then any two norms are equivalent.	
+\end{theorem}
+
+\begin{proof}
+	Let $\cbr[0]{e_1,\dots,e_n}$ be a basis of $X$, $x := \sum_{k = 1}^n x_ke_k \in X$ and $\norm[0]{\cdot}$ be a norm on $X$. We show that $\norm[0]{\cdot}$ is equivalent to the euclidean norm. H\"older's inequality for series (see \cite[224]{elstrodt:mass:2011}) yields
+	\begin{equation}
+		\norm[0]{x} \leq \del[3]{\sum_{k = 1}^n \abs[0]{x_k}^2}^{1/2} \del[3]{\sum_{k = 1}^n \norm[0]{e_k}^2}^{1/2}\leq \sqrt{n}\max\cbr[0]{\norm[0]{e_1},\dots,\norm[0]{e_n}}\norm[0]{x}_2
+		\label{eq:estimate_2_norm}
+	\end{equation}
+
+	Let $(x_n)_{n \in \mathbb{N}}$ be a sequence in $(X,\norm[0]{\cdot}_2)$ which converges to $x \in X$. By estimate (\ref{eq:estimate_2_norm}) and the reverse triangle inequality we get
+	\begin{equation}
+		0 \leq \abs[0]{\norm[0]{x_n} - \norm[0]{x_n}} \leq \norm[0]{x_n - x} \leq \sqrt{n}\max\cbr[0]{\norm[0]{e_1},\dots,\norm[0]{e_n}}\norm[0]{x_n - x}_2
+	\end{equation}
+
+	\noindent which implies by double application of exercise \ref{ex:convergence_sequence}
+	\begin{equation}
+		\lim_{n \to \infty} \norm[0]{x_n} = \norm[0]{x}.
+	\end{equation}
+
+	Hence $\norm[0]{\cdot}$ is a continuous function on $(X,\norm[0]{\cdot}_2)$. Furthermore, $\mathbb{S}^{n - 1} = \norm[0]{\cdot}^{-1}_2(\cbr[0]{1})$ and $\mathbb{S}^{n-1}$ is clearly bounded since $\mathbb{S}^{n-1} \subseteq \overline{B}_1(0)$. Therefore $\mathbb{S}^{n - 1}$ is compact by Heine-Borel and by the extreme value theorem \ref{thm:extreme_value_theorem} we get that $\norm[0]{\cdot}$ attains its minimum value $\norm[0]{x_0}$ on $\mathbb{S}^{n-1}$. Since $\norm[0]{\cdot}$ is a norm, we must have $\norm[0]{x_0} > 0$ and since $x/\norm[0]{x}_2 \in \mathbb{S}^{n - 1}$ for $x \neq 0$ we get 
+	\begin{equation}
+		\norm[0]{x_0} \norm[0]{x}_2 \leq \norm[0]{x}.
+	\end{equation}
+
+	The case $x = 0$ holds trivially.
+\end{proof}
+
+%Exercises
+\section*{Exercises}
+
+\begin{exercise}
+	Show that if $\norm[0]{\cdot}: X \to \mathbb{R}$ is a norm, then $\norm[0]{x} \geq 0$ for any $x \in X$.
+\end{exercise}
+
+\begin{exercise}
+	Show that any norm $\norm[0]{\cdot}$ induces a metric $d_{\norm[0]{\cdot}}$ on $X$ by setting $d_{\norm[0]{\cdot}}(x,y) := \norm[0]{x - y}$ for $x,y \in X$.
+\end{exercise}
+
+\begin{exercise}
+	Show that if $(X,\norm[0]{\cdot})$ is a normed space, then the \bld{reverse triangle inequality} $\abs[0]{\norm[0]{x} - \norm[0]{y}} \leq \norm[0]{x - y}$ holds for any $x,y \in X$. Deduce that $\norm[0]{\cdot}$ is a Lipschitz continuous function on $(X,\norm[0]{\cdot})$.
+\end{exercise}
+

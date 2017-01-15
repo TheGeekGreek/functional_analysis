@@ -1,0 +1,133 @@
+\section{Metric Spaces}
+We follow \cite[396 -- 398]{lee:topological_manifolds:2011}.
+
+\begin{definition}
+	Let $M$ be a set. A \bld{metric} on $M$ is a function 	
+	\begin{equation}
+		d: M \times M \to \mathbb {R}
+	\end{equation}
+
+	\noindent having the following properties:
+
+	\begin{enumerate}
+		\item $d(x,y) \geq 0$ for all $x,y \in M$.
+		\item $d(x,y) = 0$ if and only if $x = y$.
+		\item $d(x,y) = d(y,x)$ for all $x,y \in M$.
+		\item \emph{(Triangle Inequality)} $d(x,z) \leq d(x,y) + d(y,z)$ for all $x,y,z \in M$.
+
+	\end{enumerate}
+	
+	If on a set $M$ a metric $d$ has been specified, the tuple $(M,d)$ is called a \bld{metric space}.
+\end{definition}
+
+\begin{definition}
+	Let $(M,d)$ be a metric space. For any $x \in M$ and $r > 0$, the \bld{open ball of radius $r$ around $x$} is the set 
+	\begin{equation}
+		B_r(x) := \cbr[0]{y \in M : d(y,x) < r}.
+	\end{equation}
+\end{definition}
+
+\begin{proposition}
+	Let $(M,d)$ be a metric space. 
+	
+	\begin{enumerate}[label = \textup{(}\alph*\textup{)}]
+		\item The collection
+			\begin{equation}
+				\mathcal{T}_d := \cbr[0]{A \subseteq M :  \forall x \in A \exists r > 0 \text{ such that } B_r(x) \subseteq A}
+			\end{equation}
+			\noindent is a topology on $M$, called the \bld{metric topology induced by the metric $d$}.
+		
+		\item For each $x \in M$ and $r > 0$ we have $B_r(x) \in \mathcal{T}_d$.
+		\item $A \subseteq M$ is in $\mathcal{T}_d$ if and only if $A$ can be written as a union of some open balls.
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	First we prove (a). Obviously, $\varnothing,M \in \mathcal{T}_d$. Consider a family $(U_\alpha)_{\alpha \in A} \in \mathcal{T}_d$ and let $x \in \bigcup_{\alpha \in A} U_\alpha$. Thus $x \in U_\alpha$ for some $\alpha \in A$. Since $U_\alpha \in \mathcal{T}_d$, we find $r > 0$ such that $B_r(x) \subseteq U_\alpha$. Hence $B_r(x) \subseteq \bigcup_{\alpha \in A} U_\alpha$ and so $\bigcup_{\alpha \in A}U_\alpha \in \mathcal{T}_d$. Now assume $U_1, \dots,U_n \in \mathcal{T}_d$ and let $x \in U_1 \cap \dots \cap U_n$. Since each $U_i \in \mathcal{T}_d$, we find $r_i > 0$ such that $B_{r_i}(x) \subseteq U_i$ for each $i = 1,\dots,n$. Setting $r:= \min\cbr[0]{r_1,\dots,r_n}$ we have that $B_r(x) \subseteq U_1 \cap \dots \cap U_n$ and thus $U_1 \cap \dots \cap U_n \in \mathcal{T}_d$.
+	To prove (b), let $y \in B_r(x)$. Then for $z \in B_{r - d(x,y)}(y)$ we have
+	\begin{equation}
+		d(x,z) \leq d(x,y) + d(y,z) < d(x,y) + r - d(x,y) = r
+	\end{equation}
+	\noindent and hence $z \in B_r(x)$. 
+	To prove (c), let $A \in \mathcal{T}_d$. Then for any $x \in A$ we find $r_x$ such that $B_{r_x}(x) \subseteq A$. But then $\bigcup_{x \in A} B_{r_x}(x) = A$. Conversly, assume $A = \bigcup_{\alpha \in A} B_{r_\alpha}(x_\alpha)$. By (b) we have that $B_{r_\alpha}(x_\alpha) \in \mathcal{T}_d$ for each $\alpha \in A$. Thus by (a) we have that $\bigcup_{\alpha \in A} B_{r_\alpha}(x_\alpha) \in \mathcal{T}_d$.
+\end{proof}
+
+\begin{proposition}
+	Let $(M,d)$ and $(M',d')$ be metric spaces and $f: M \to M'$. The mapping $f$ is continuous if and only if the following condition holds: For any $x \in M$ and $\varepsilon > 0$ there exists a $\delta > 0$ such that $d(x,y) < \delta$ implies $d(f(x),f(y)) < \varepsilon$ for every $y \in M$.
+	\label{prop:metric_continuity}
+\end{proposition}
+
+\begin{proof}
+	Assume $f$ is continuous. Let $x \in M$ and $\varepsilon > 0$. Then $f^{-1}(B_\varepsilon(f(x)))$ is open in $M$ since $f$ is continuous and thus we find $\delta > 0$ such that $B_\delta(x) \subseteq f^{-1}(B_\varepsilon(f(x)))$. Conversly, let $U \subseteq M'$ be open. For any 	
+\end{proof}
+
+\begin{proposition}[Sequence Criterion for Continuity]
+	Let $(M,d)$ and $(M',d')$ be metric spaces. A mapping $f: M \to M'$ is continuous if and only if the following criterion holds: If $(x_n)_{n \in \mathbb{N}}$ is a sequence in $M$ which converges to some $x \in M$, then $\lim_{n \to \infty} f(x_n) = f(x)$.
+	\label{prop:sequence_criterion_continuity}
+\end{proposition}
+
+\begin{definition}
+	Two metrics $d$ and $d'$ on a set $M$ are said to be \bld{equivalent} if $\mathcal{T}_d = \mathcal{T}_{d'}$.
+\end{definition}
+
+A useful criterion to determine wether two metrics $d$ and $d'$ are equivalent or not is stated in the following proposition.
+
+\begin{proposition}
+	Let $d$ and $d'$ be two metrics on a set $M$. Then $d$ and $d'$ are equivalent if and only if the following condition is satisfied: for every $x \in M$ and every $r > 0$ there exist $r_1,r_2 > 0$ such that $B_{r_1}^{(d')}(x) \subseteq B_r^{(d)}(x)$ and $B_{r_2}^{(d)}(x) \subseteq B_r^{(d')}(x)$. 
+	\label{prop:characterization_equivalent_metrics}
+\end{proposition}
+
+\begin{proof}
+	Assume $\mathcal{T}_d = \mathcal{T}_{d'}$. Then it is obvious that the condition is satisfied with $r_1 = r_2 = r$. Conversly, assume $U \in \mathcal{T}_d$.	
+\end{proof}
+
+\begin{definition}
+	Two metrics $d$ and $d'$ on a set $M$ are said to be \bld{strongly equivalent} if there are $c, c' > 0$ such that for all $x,y \in M$ 
+	\begin{equation}
+		d(x,y) \leq c' d'(x,y) \qquad \text{and} \qquad d'(x,y) \leq c d(x,y).
+	\end{equation}
+\end{definition}
+
+\begin{corollary}
+	Strongly equivalent metrics are equivalent.
+\end{corollary}
+
+\begin{proof}
+	This follows immediately from proposition \ref{prop:characterization_equivalent_metrics} by setting $r_1 := r/c'$ and $r_2 := r/c$.
+\end{proof}
+
+%Exercises
+\section*{Exercises}
+
+\begin{exercise}
+	Let $(M,d)$ be a metric space , $(x_n)_{n \in \mathbb{N}}$ a sequence in $M$ and $x \in M$. The sequence $(x_n)_{n \in \mathbb{N}}$ converges to $x$ if and only if the following condition is satisfied: For any $\varepsilon > 0$ there exists $N \in \mathbb{N}$ such that $d(x_n,x) < \varepsilon$ whenever $n > N$.
+	\label{ex:metric_convergence}
+\end{exercise}
+
+\begin{exercise}
+	Let $(M,d)$ be a metric space and $(x_n)_{n \in \mathbb{N}}$. Then $\lim_{n \to \infty} x_n = x$ if and only if $\lim_{n \to \infty} d(x_n,x) = 0$, i.e. the sequence $(d(x_n,x))_{n \in \mathbb{N}}$ converges to zero in $(\mathbb{R},\abs[0]{\cdot})$.
+	\label{ex:convergence_sequence}
+\end{exercise}
+
+\begin{exercise}
+	Prove proposition \ref{prop:sequence_criterion_continuity}.
+\end{exercise}
+
+\begin{exercise}
+	Let $M$ be a set. Show that equivalence of metrics on $M$ is an equivalence relation on the set of all metrics on $M$.
+\end{exercise}
+
+\begin{exercise}
+	Let $M$ be a set. Show that strong equivalence of metrics on $M$ is an equivalence relation on the set of all metrics on $M$.
+\end{exercise}
+
+\begin{exercise}
+	Let $X$ be a topological space. A subset of $X$ is called an \bld{$F_\sigma$-set} if it is a countable union of closed sets and a \bld{$G_\delta$-set} if it is a countable intersection of open sets (see \cite[61]{aliprantis:principles_of_real_analysis:1998}). Assume we are given a metric $d$ on $X$. For a nonempty subset $A$ of $X$ we define the real valued \bld{distance function $\rho_A$} by $\rho_A(x) := \inf\cbr[0]{d(x,a) : a \in A}$ for any $x \in X$.
+
+	\begin{enumerate}[label = (\alph*)]
+		\item Show that $\rho_A$ is continuous. \textit{Hint:} Show that $\rho_A$ is in fact Lipschitz continuous.
+		\item Show that $\rho_A^{-1}(\cbr[0]{0}) = \overline{A}$. \textit{Hint:} Use corollary \ref{cor:sequence_closure}.
+		\item Show that any closed subset of $X$ is a $G_\delta$-set. 
+		\item Show that any open subset of $X$ is an $F_\sigma$-set.
+	\end{enumerate}
+\end{exercise}
