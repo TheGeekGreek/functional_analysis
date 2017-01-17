@@ -1,4 +1,5 @@
 \section{Metric Spaces}
+\subsection{Basic Definitions and Properties}
 We follow \cite[396 -- 398]{lee:topological_manifolds:2011}.
 
 \begin{definition}
@@ -96,8 +97,28 @@ A useful criterion to determine wether two metrics $d$ and $d'$ are equivalent o
 	This follows immediately from proposition \ref{prop:characterization_equivalent_metrics} by setting $r_1 := r/c'$ and $r_2 := r/c$.
 \end{proof}
 
+\begin{proposition}
+	The product topology on $\mathbb{R}^n = \mathbb{R} \times \dots \times \mathbb{R}$, where $(\mathbb{R},\mathcal{T}_{\abs[0]{\cdot}})$, is the same as the one induced by the metric $\abs[0]{\cdot}$.
+	\label{prop:product_topology_Rn}
+\end{proposition}
+
 %Exercises
 \section*{Exercises}
+
+\begin{exercise}
+	Let $(M,d)$ be a metric space. Show that $M$ is a Hausdorff space.
+\end{exercise}
+
+\begin{exercise}
+	In this exercise we show that $(\mathbb{R}^n,\mathcal{T}_{\abs[0]{\cdot}})$ is second countable.
+
+	\begin{enumerate}[label = (\alph*)]
+		\item For $a < b$ show that $(a,b) \subseteq R$ contains a rational number.
+		\item Show that $\mathbb{Q}$ is dense in $\mathbb{R}$. \textit{Hint:} Prove that for any real point there is a rational sequence converging to it and use corollary \ref{cor:sequence_closure}.
+		\item Show that $\mathbb{Q}^n$ is dense in $\mathbb{R}^n$. \textit{Hint:} Use proposition \ref{prop:convergence_product} and \ref{prop:product_topology_Rn}.
+		\item Show that the collection consisting of all open balls $B_p(q) \subseteq \mathbb{R}^n$ where $p \in \mathbb{Q}$ and $q \in \mathbb{Q}^n$ is a countable basis of $(\mathbb{R}^n,\mathcal{T}_{\abs[0]{\cdot}})$. 
+	\end{enumerate}
+\end{exercise}
 
 \begin{exercise}
 	Let $(M,d)$ be a metric space , $(x_n)_{n \in \mathbb{N}}$ a sequence in $M$ and $x \in M$. The sequence $(x_n)_{n \in \mathbb{N}}$ converges to $x$ if and only if the following condition is satisfied: For any $\varepsilon > 0$ there exists $N \in \mathbb{N}$ such that $d(x_n,x) < \varepsilon$ whenever $n > N$.

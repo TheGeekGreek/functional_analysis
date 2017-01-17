@@ -24,7 +24,8 @@
 There is a usefull result in the finite dimenisonal case (see \cite[26]{werner:funktionalanalysis:2011}).
 
 \begin{theorem}
-	Let $X$ be a finite dimensional real or complex vector space. Then any two norms are equivalent.	
+	Let $X$ be a finite dimensional real or complex vector space. Then any two norms are equivalent.
+	\label{thm:equivalence_norms}
 \end{theorem}
 
 \begin{proof}
@@ -34,7 +35,7 @@ There is a usefull result in the finite dimenisonal case (see \cite[26]{werner:f
 		\label{eq:estimate_2_norm}
 	\end{equation}
 
-	Let $(x_n)_{n \in \mathbb{N}}$ be a sequence in $(X,\norm[0]{\cdot}_2)$ which converges to $x \in X$. By estimate (\ref{eq:estimate_2_norm}) and the reverse triangle inequality we get
+	Let $(x_n)_{n \in \mathbb{N}}$ be a sequence in $(X,\norm[0]{\cdot}_2)$ which converges to $x \in X$. By estimate (\ref{eq:estimate_2_norm}) and the reverse triangle inequality (see exercise \ref{ex:reverse_triangle_inequality}) we get
 	\begin{equation}
 		0 \leq \abs[0]{\norm[0]{x_n} - \norm[0]{x_n}} \leq \norm[0]{x_n - x} \leq \sqrt{n}\max\cbr[0]{\norm[0]{e_1},\dots,\norm[0]{e_n}}\norm[0]{x_n - x}_2
 	\end{equation}
@@ -52,6 +53,8 @@ There is a usefull result in the finite dimenisonal case (see \cite[26]{werner:f
 	The case $x = 0$ holds trivially.
 \end{proof}
 
+Theorem \ref{thm:equivalence_norms} yields a particularly important result together with the following proposition.
+
 %Exercises
 \section*{Exercises}
 
@@ -65,5 +68,6 @@ There is a usefull result in the finite dimenisonal case (see \cite[26]{werner:f
 
 \begin{exercise}
 	Show that if $(X,\norm[0]{\cdot})$ is a normed space, then the \bld{reverse triangle inequality} $\abs[0]{\norm[0]{x} - \norm[0]{y}} \leq \norm[0]{x - y}$ holds for any $x,y \in X$. Deduce that $\norm[0]{\cdot}$ is a Lipschitz continuous function on $(X,\norm[0]{\cdot})$.
+	\label{ex:reverse_triangle_inequality}
 \end{exercise}
 
