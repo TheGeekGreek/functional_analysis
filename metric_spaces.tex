@@ -97,10 +97,56 @@ A useful criterion to determine wether two metrics $d$ and $d'$ are equivalent o
 	This follows immediately from proposition \ref{prop:characterization_equivalent_metrics} by setting $r_1 := r/c'$ and $r_2 := r/c$.
 \end{proof}
 
-\begin{proposition}
+The following theorem is taken from \cite[259]{engelking:general_topology:1989}.
+
+\begin{theorem}
+	Let $(M_i)_{i \in \mathbb{N}}$ be a sequence of metric spaces with respective metrics $(d_i)_{i \in \mathbb{N}}$ where $d_i \leq 1$ for all $i \in \mathbb{N}$. Then 
+	\begin{equation}
+		d(x,y) := \sum_{i = 1}^\infty \frac{1}{2^i}d_i(x_i,y_i)
+	\end{equation}
+	\noindent is a metric on $\prod_{i = 1}^\infty X_i$. Moreover, the topology induced by the above metric coincides with the product topology on $\prod_{i = 1}^\infty X_i$.
+	\label{thm:product_metric}
+\end{theorem}
+
+\begin{proof}
+	That $d$ defines a metric is clear. The well-definedness follows from the fact that the series is majorized by the convergent geometric series $\sum_{i = 1}^\infty \frac{1}{2^i}$. Let $\prod_{i = 1}^\infty M_i$ be equipped with the metric topology. Let $\varepsilon > 0$ and $k \in \mathbb{N}$. Then if $d(x,y) < \varepsilon/2^k$ we have 
+	\begin{equation}
+		d_k(x_k,y_k) \leq 2^k \sum_{i = 1}^\infty \frac{1}{2^i}d_i(x_i,y_i) < \varepsilon.
+	\end{equation}
+
+	Hence $\pi_k$ is continuous and by the minimality of the product topology \ref{prop:minimality_product_topology} we get that the product topology is contained in the metric topology induced by $d$. Conversly, let $U \subseteq \prod_{i = 1}^\infty X_i$ open with respect to the topology induced by $d$. Therefore there exists $r > 0$ such that $B_r(x) \subseteq U$. Let $k \in \mathbb{N}$ so such that
+	\begin{equation}
+		\sum_{i = k + 1}^\infty \frac{1}{2^i} = \frac{1}{2^k} < \frac{1}{2}r
+	\end{equation}
+
+	\noindent and for $i = 1,\dots,k$ let
+	\begin{equation}
+		U_i := B_{r/2}(x_i) = \cbr[0]{z \in X_i : d_i(x_i,z) < r/2}.
+	\end{equation}
+
+	Now for $y \in \bigcap_{i = 1}^k \pi_i^{-1}(U_i)$ we have
+	\begin{equation}
+		d(x,y) = \sum_{i = 1}^k \frac{1}{2^i}d_i(x_i,y_i) + \sum_{i = k + 1}^\infty \frac{1}{2^i}d_i(x_i,y_i) < r
+	\end{equation}
+
+	Therefore 
+	\begin{equation}
+		\bigcap_{i = 1}^k \pi_i^{-1}(U_i) \subseteq B_r(x) \subseteq U
+	\end{equation}
+
+	\noindent and clearly $\bigcap_{i = 1}^k \pi_i^{-1}(U_i)$ belongs to the basis of the product topology. Hence $U$ is open in the product topology.
+\end{proof}
+
+It is obvious, that if we have a finite number of metric spaces $M_1,\dots,M_n$, theorem \ref{thm:product_metric} can be also applied to non-bounded metrics $d_i$. This yields a usefull corollary.
+
+\begin{corollary}
 	The product topology on $\mathbb{R}^n = \mathbb{R} \times \dots \times \mathbb{R}$, where $(\mathbb{R},\mathcal{T}_{\abs[0]{\cdot}})$, is the same as the one induced by the metric $\abs[0]{\cdot}$.
 	\label{prop:product_topology_Rn}
-\end{proposition}
+\end{corollary}
+
+\begin{proof}
+	
+\end{proof}
 
 %Exercises
 \section*{Exercises}

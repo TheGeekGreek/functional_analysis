@@ -103,9 +103,55 @@ As we shall see later, a topology $\mathcal{T}$ on a set $X$ may have several ba
 	Let $X$ and $Y$ be two topological spaces and $f: X \to Y$. The map $f$ is said to be \bld{continuous} if for any open set $U \subseteq Y$ we have that $f^{-1}(Y)$ is open in $X$.
 \end{definition}
 
-\begin{exercise}
-	Prove that a mapping $f: X \to Y$ between two topological spaces $X$ and $Y$ is continuous if and only if for all $A \subseteq Y$ closed, $f^{-1}(Y)$ is closed in $X$. \textit{Hint:} Use that for $A,B \subseteq Y$ we have $f^{-1}(A \setminus B) = f^{-1}(A) \setminus f^{-1}(B)$.
-\end{exercise}
+\begin{proposition}[Characteristic Property of Infinite Product Spaces]
+	Let $(X_\alpha)_{\alpha \in A}$ be a family of topological spaces. For any topological space $Y$, a mapping $f: Y \to \prod_{\alpha \in A}X_\alpha$ is continuous if and only if each of its component functions $f_\alpha := \pi_\alpha \circ f$ is continuous, where $\pi_\alpha: \prod_{\alpha \in A}X_\alpha \to X_\alpha$ denotes the \bld{canonical projection}.
+	\label{prop:characteristic_property_product}
+\end{proposition}
+
+\begin{proof}
+	It is enough to verify the statements for basis sets only. Let $U_\alpha \subseteq X_\alpha$ be open. Then $\pi_\alpha^{-1}(U_\alpha) = \prod_{\beta \in A} U_\beta$ where $U_\beta = X_\beta$ whenever $\beta \neq \alpha$. But this set is open in $\prod_{\alpha \in A}X_\alpha$ and hence by the continuity of $f$
+	\begin{equation}
+		f_\alpha^{-1}(U_\alpha) = (\pi_\alpha \circ f)^{-1}(U_\alpha) = f^{-1}(\pi_\alpha^{-1}(U_\alpha))
+	\end{equation}
+
+	\noindent is open in $Y$. Conversly, assume that $f_\alpha$ is continuous for every $\alpha \in A$. Let $B$ belong to the basis of the topology of $\prod_{\alpha \in A}X_\alpha$. Then $B = \bigcap_{i = 1}^n \pi^{-1}_{\alpha_i}(U_{\alpha_i})$ for some open subsets $U_{\alpha_i} \subseteq X_{\alpha_i}$. But then 
+	\begin{equation}
+		f^{-1}(B) = \bigcap_{i = 1}^n f^{-1}(\pi_{\alpha_i}^{-1}(U_{\alpha_i})) = \bigcap_{i = 1}^n(\pi_{\alpha_i} \circ f)^{-1}(U_{\alpha_i})
+	\end{equation}
+
+	\noindent is open in $Y$.
+\end{proof}
+
+\begin{corollary}
+	Let $(X_\alpha)_{\alpha \in A}$ be a family of topological spaces. Each canonical projection $\pi_\alpha: \prod_{\alpha \in A}X_\alpha \to X_\alpha$ is continuous.
+	\label{cor:projections_continuous}
+\end{corollary}
+
+\begin{proof}
+	Choose $Y = \prod_{\alpha \in A} X_\alpha$ equipped with the product topology and $f = \id$ in proposition \ref{prop:characteristic_property_product}. 
+\end{proof}
+
+\begin{proposition}[Uniqueness of the Product Topology]
+	Let $(X_\alpha)_{\alpha \in A}$ be a family of topological spaces. The product topology on $\prod_{\alpha \in A}X_\alpha$ is the unique topology satisfying the characteristic property \ref{prop:characteristic_property_product}.
+\end{proposition}
+
+\begin{proof}
+	Assume there exists another topology on $\prod_{\alpha \in A}X_\alpha$ which satisfies the characteristic property \ref{prop:characteristic_property_product}. Then setting $Y = \prod_{\alpha \in A}X_\alpha$ equipped with this topolohy in proposition \ref{prop:characteristic_property_product} and using that by corollary \ref{cor:projections_continuous} the mappings $f_\alpha = \pi_\alpha \circ f$ are continuous by composition of continuous functions yields that $\id$ is continuous and so the product topology is contained in the other one. Exchanging the roles of $Y$ and $\prod_{\alpha \in A}X_\alpha$ yields the desired equality. 
+\end{proof}
+
+\begin{proposition}[Minimality of the Product Topology]
+	Let $(X_\alpha)_{\alpha \in A}$ be a family of topological spaces. Endow $\prod_{\alpha \in A}X_\alpha$ with a topology such that every canoncical projection $\pi_\alpha: \prod_{\alpha \in A}X_\alpha \to X_\alpha$ is continuous. Then this topology contains the product topology.
+	\label{prop:minimality_product_topology}
+\end{proposition}
+
+\begin{proof}
+	Let $B$ be a basis element of the basis of the product topology on $\prod_{\alpha \in A}X_\alpha$. Thus 
+	\begin{equation}
+		B = \bigcap_{i = 1}^n \pi_{\alpha_i}^{-1}(U_{\alpha_i})
+	\end{equation}
+
+	\noindent for some open subsets $U_{\alpha_i} \subseteq X_{\alpha_i}$. Since each canonical projection $\pi_\alpha$ is continuous, we have that $B$ is contained in the topology.
+\end{proof}
 	
 \begin{definition}
 	Let $X$ be a topological space, $(x_n)_{n \in \mathbb{N}}$ be a sequence in $X$ and $x \in X$. The sequence $(x_n)_{n \in \mathbb{N}}$ is said to \bld{converge to $x$} if for every neighbourhood $U$ of $x$ there exists $N \in \mathbb{N}$ such that $x_n \in U$ for any $n > N$. 
@@ -159,3 +205,6 @@ As we shall see later, a topology $\mathcal{T}$ on a set $X$ may have several ba
 
 \section*{Exercises}
 
+\begin{exercise}
+	Prove that a mapping $f: X \to Y$ between two topological spaces $X$ and $Y$ is continuous if and only if for all $A \subseteq Y$ closed, $f^{-1}(Y)$ is closed in $X$. \textit{Hint:} Use that for $A,B \subseteq Y$ we have $f^{-1}(A \setminus B) = f^{-1}(A) \setminus f^{-1}(B)$.
+\end{exercise}
