@@ -1,0 +1,59 @@
+\section{Definitions and Basic Notions}
+
+\begin{proposition}
+	Let $X$ and $Y$ be topological spaces. Then $\mathcal{B}(X) \otimes \mathcal{B}(Y) \subseteq \mathcal{B}(X \times Y)$. If additionally $X$ and $Y$ are both second countable, then $\mathcal{B}(X\times Y) = \mathcal{B}(X) \otimes \mathcal{B}(Y)$.
+\end{proposition}
+
+\begin{proposition}
+	Let $(X,\mathcal{A},\mu)$ be a measure space, $(X,\mathcal{A}_\mu,\overline{\mu})$ be its completion and $f: X \to \intcc[0]{-\infty,\infty}$ $\mathcal{A}_\mu$-measurable. Then there exist $\mathcal{A}$-measurable functions $g,h: X \to \intcc[0]{-\infty,\infty}$ with $g \leq f \leq h$ and $g = h$ $\mu$-a.e.
+\end{proposition}
+
+\begin{proof}
+	First assume $f \in \Sigma^+$. Then 
+	\begin{equation}
+		f = \sum_{i = 1}^n a_i \chi_{A_i}
+	\end{equation}
+
+	\noindent where $a_i \leq 0$ and $A_i \in \mathcal{A}_\mu$ for $i = 1,\dots,n$. Since $\mathcal{A}_\mu$ is the completion of $\mathcal{A}$, there exist $E_i,F_i \in \mathcal{A}$ such that 
+	\begin{equation}
+		E_i \subseteq A_i \subseteq F_i \qquad \text{and} \qquad \mu(F_i \setminus E_i)
+	\end{equation}
+
+	\noindent for $i = 1,\dots,n$. Then 
+	\begin{equation}
+		g := \sum_{i = 1}^n a_i \chi_{E_i} \qquad \text{and} \qquad h := \sum_{i = 1}^n a_i \chi_{F_i}
+	\end{equation}
+
+	\noindent have the desired properties.Now let $f$ be a $\mathcal{A}_\mu$-measurable nonnegative function. Then we find a sequence $(\varphi_n)_{n \in \mathbb{N}}$ of $\mathcal{A}_\mu$-measurable simple functions $0 \leq \varphi_n$ such that $\varphi_n \nearrow f$. By the first part we find sequences $(g_n)_{n\in\mathbb{N}}$ and $(h_n)_{n \in \mathbb{N}}$ of $\mathcal{A}$-measurable functions such that 
+	\begin{equation}
+		g_n \leq \varphi_n \leq h_n \qquad \text{and} \qquad g_n = h_n \>\mu\text{-a.e.}
+	\end{equation}
+
+	\noindent for any $n \in \mathbb{N}$.
+\end{proof}
+
+\section*{Exercises}
+
+\begin{exercise}
+	Let $X$ be a set. Determine $\sigma(\cbr[0]{\cbr[0]{x} : x \in X})$.
+\end{exercise}
+
+\begin{exercise}
+	Let $X,Y$ be sets, $A \subseteq \mathcal{P}(Y)$ and $f: X \to Y$ be surjective. Then 
+	\begin{equation}
+		m\del[0]{\cbr[0]{f^{-1}(S) : S \in A}} = \cbr[0]{f^{-1}(S) : S \in m(A)}.
+	\end{equation}
+
+	\textit{Hint:} For the inclusion $\supseteq$ consider the set 
+	\begin{equation}
+		\mathcal{M} := \cbr[0]{B \subseteq Y : B \in m(A) \text{ and } f^{-1}(B) \in m\del[0]{\cbr[0]{f^{-1}(S) : S \in A}}}.
+	\end{equation}
+\end{exercise}
+
+\begin{exercise}
+	Show that there is no countable $\sigma$-algebra.
+\end{exercise}
+
+\begin{exercise}
+	
+\end{exercise}

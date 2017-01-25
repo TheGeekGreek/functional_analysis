@@ -1,0 +1,210 @@
+\section{Definitions and Basic Notions}
+\subsection{Topologies}
+
+\begin{definition}
+	Let $X$ be a set. A \bld{topology} on $X$ is a collection $\mathcal{T}$ of subsets of $X$ satisfying the following properties:
+	\begin{enumerate}
+		\item $\varnothing, X \in \mathcal{T}$.
+		\item If $(U_\alpha)_{\alpha \in A}$ is a family of elements of $\mathcal{T}$, then $\bigcup_{\alpha \in A} U_\alpha \in \mathcal{T}$.
+		\item If $U_1,\dots,U_n \in \mathcal{T}$, then $U_1 \cap \dots \cap U_n \in \mathcal{T}$.
+	\end{enumerate}
+
+	A set $X$ for which a topology $\mathcal{T}$ has been specified is called a \bld{topological space} and elements of $\mathcal{T}$ are called \bld{open sets}. 
+\end{definition}
+
+\begin{example}[Topologies]
+	~
+	\begin{enumerate}[label = \textup{(}\alph*\textup{)}]
+		\item Let $(X,\mathcal{T})$ be a topological space and let $S \subseteq X$. Then the collection $\mathcal{T}_S := \cbr[0]{S \cap U : U \in \mathcal{T}}$ is a topology on $S$.
+	\end{enumerate}
+\end{example}
+
+\begin{definition}
+	Let $(X,\mathcal{T})$ be a topological space and $A \subseteq X$. The \bld{closure of $A$ in $X$}, denoted by $\overline{A}$, is defined by 
+	\begin{equation}
+		\overline{A} := \bigcap\cbr[0]{B \subseteq X : A \subseteq B, B^c \in \mathcal{T}}.
+	\end{equation}
+
+	The \bld{interior of $A$ in $X$}, denoted by $\Int A$, is defined by 
+	\begin{equation}
+		\Int A := \bigcup\cbr[0]{C \subseteq X: C \subseteq A, C \in \mathcal{T}}.	
+	\end{equation}
+\end{definition}
+
+There is an eminent characterization of a point being in the closure of a subset $A \subseteq X$ of a topological space $X$.
+
+\begin{proposition}
+	Let $X$ be a topological space and $A \subseteq X$. Then $x \in \overline{A}$ if and only if the following condition holds: Every neighbourhood $U$ of $x$ contains a point belonging to $A$.
+	\label{prop:characterization_closure}
+\end{proposition}
+
+\begin{proof}
+	Assume that there exists a neighbourhood $U$ of $x$ such that $U \cap A = \varnothing$. Then $U^c$ is closed and $A \subseteq U^c$. But $x \notin U^c$ and thus $x \notin \overline{A}$. Conversly, assume $x \notin \overline{A}$. Thus we find a closed set $B$ such that $A \subseteq B$ and $x \notin B$. But then $B^c$ is open and $B^c \cap A = \varnothing$.
+\end{proof}
+
+\subsection{Hausdorff Spaces}
+
+\begin{definition}
+	Let $X$ be a topological space. $X$ is called a \bld{Hausdorff space} if given $p,p' \in X$ with $p \neq p'$ we find neighbourhoods $U$ and $U'$ of $p$ and $p'$, respectively, such that $U \cap U' = \varnothing$	
+\end{definition}
+
+\subsection{Bases and Countability}
+
+\begin{definition}
+	Let $(X,\mathcal{T})$ be a topological space. A collection $\mathcal{B}$ of subsets of $X$ is called a \bld{basis for the topology of $X$} if the following two conditions hold:
+
+	\begin{enumerate}
+		\item $\mathcal{B} \subseteq \mathcal{T}$.
+		\item For any $U \in \mathcal{T}$ we have $U = \bigcup_{\alpha \in A} B_\alpha$ where $B_\alpha \in \mathcal{B}$ for any $\alpha \in A$.
+	\end{enumerate}
+	\label{def:basis_topology}
+\end{definition}
+
+As we shall see later, a topology $\mathcal{T}$ on a set $X$ may have several bases but topologies having the same basis, are equal.
+
+\begin{corollary}	
+	If $X$ is a set, $\mathcal{T}$ and $\mathcal{T}'$ are topologies on $X$ and $\mathcal{B}$ is a basis for each  of the topologies $\mathcal{T}$ and $\mathcal{T}'$, then $\mathcal{T} = \mathcal{T}'$.
+	\label{cor:topology_unique}
+\end{corollary}
+
+\begin{proof}
+	This is immediate by the definition of a basis for a topology \ref{def:basis_topology}.
+\end{proof}
+
+\begin{proposition}[Basis Criterion]
+	Let $X$ be a topological space and $\mathcal{B}$ be a basis for the topology on $X$. Then $U$ is open in $X$ if and only if for each $p \in U$ there exists $B \in \mathcal{B}$ such that $p \in B \subseteq U$.
+	\label{prop:basis_criterion}
+\end{proposition}
+
+\begin{proof}
+	Assume $U$ is open. Since $\mathcal{B}$ is a basis, we have $U = \bigcup_{\alpha \in A} B_\alpha$ where $B_\alpha \in \mathcal{B}$ for each $\alpha \in A$. Thus for each $p \in U$ we have $p \in \bigcup_{\alpha \in A} B_\alpha$ and so $p \in B_\alpha$ for some $\alpha \in A$. But since also $\bigcup_{\alpha \in A} B_\alpha \subseteq U$ we have $B_\alpha \subseteq U$. Conversly, we can write $U = \bigcup_{p \in U} B_p$ for some $U \subseteq X$ where for each $p \in U$ we have $B_p \in \mathcal{B}$. Since each basis element is open, $U$ is open as a union of open sets.
+\end{proof}
+
+\begin{definition}
+	Let $X$ be a set and $\mathcal{B}$ be a collection of subsets of $X$. Then $\mathcal{B}$ is a basis for some topology on $X$ if and only if it satisfies the following two conditions:
+
+	\begin{enumerate}
+		\item $\bigcup_{B \in \mathcal{B}}B = X$.
+		\item If $B_1,B_2 \in \mathcal{B}$ and $x \in B_1 \cap B_2$, there exists an element $B_3 \in \mathcal{B}$ such that $x \in B_3 \subseteq B_1\cap B_2$.
+	\end{enumerate}
+\end{definition}
+
+\begin{example}
+	Let $(X_\alpha)_{\alpha \in A}$ be a family of topological spaces. The \bld{product topology} on $\prod_{\alpha \in A} X_\alpha$ is defined to be the topology generated by the basis consisting of all subsets of $\prod_{\alpha \in A} X_\alpha$ of the form $\prod_{\alpha \in A} U_\alpha$ where $U_\alpha$ is open in $X_\alpha$ for any $\alpha \in A$ and $U_\alpha = X_\alpha$ for all but finitely many $\alpha \in A$. The reader may verify that this is indeed a basis for a topology.
+\end{example}
+
+\begin{definition}
+	Let $X$ be a topological space. $X$ is called \bld{second countable} if there exists a countable basis for the topology of $X$.
+\end{definition}
+
+\subsection{Continuity and Convergence}
+
+\begin{definition}
+	Let $X$ and $Y$ be two topological spaces and $f: X \to Y$. The map $f$ is said to be \bld{continuous} if for any open set $U \subseteq Y$ we have that $f^{-1}(Y)$ is open in $X$.
+\end{definition}
+
+\begin{proposition}[Characteristic Property of Infinite Product Spaces]
+	Let $(X_\alpha)_{\alpha \in A}$ be a family of topological spaces. For any topological space $Y$, a mapping $f: Y \to \prod_{\alpha \in A}X_\alpha$ is continuous if and only if each of its component functions $f_\alpha := \pi_\alpha \circ f$ is continuous, where $\pi_\alpha: \prod_{\alpha \in A}X_\alpha \to X_\alpha$ denotes the \bld{canonical projection}.
+	\label{prop:characteristic_property_product}
+\end{proposition}
+
+\begin{proof}
+	It is enough to verify the statements for basis sets only. Let $U_\alpha \subseteq X_\alpha$ be open. Then $\pi_\alpha^{-1}(U_\alpha) = \prod_{\beta \in A} U_\beta$ where $U_\beta = X_\beta$ whenever $\beta \neq \alpha$. But this set is open in $\prod_{\alpha \in A}X_\alpha$ and hence by the continuity of $f$
+	\begin{equation}
+		f_\alpha^{-1}(U_\alpha) = (\pi_\alpha \circ f)^{-1}(U_\alpha) = f^{-1}(\pi_\alpha^{-1}(U_\alpha))
+	\end{equation}
+
+	\noindent is open in $Y$. Conversly, assume that $f_\alpha$ is continuous for every $\alpha \in A$. Let $B$ belong to the basis of the topology of $\prod_{\alpha \in A}X_\alpha$. Then $B = \bigcap_{i = 1}^n \pi^{-1}_{\alpha_i}(U_{\alpha_i})$ for some open subsets $U_{\alpha_i} \subseteq X_{\alpha_i}$. But then 
+	\begin{equation}
+		f^{-1}(B) = \bigcap_{i = 1}^n f^{-1}(\pi_{\alpha_i}^{-1}(U_{\alpha_i})) = \bigcap_{i = 1}^n(\pi_{\alpha_i} \circ f)^{-1}(U_{\alpha_i})
+	\end{equation}
+
+	\noindent is open in $Y$.
+\end{proof}
+
+\begin{corollary}
+	Let $(X_\alpha)_{\alpha \in A}$ be a family of topological spaces. Each canonical projection $\pi_\alpha: \prod_{\alpha \in A}X_\alpha \to X_\alpha$ is continuous.
+	\label{cor:projections_continuous}
+\end{corollary}
+
+\begin{proof}
+	Choose $Y = \prod_{\alpha \in A} X_\alpha$ equipped with the product topology and $f = \id$ in proposition \ref{prop:characteristic_property_product}. 
+\end{proof}
+
+\begin{proposition}[Uniqueness of the Product Topology]
+	Let $(X_\alpha)_{\alpha \in A}$ be a family of topological spaces. The product topology on $\prod_{\alpha \in A}X_\alpha$ is the unique topology satisfying the characteristic property \ref{prop:characteristic_property_product}.
+\end{proposition}
+
+\begin{proof}
+	Assume there exists another topology on $\prod_{\alpha \in A}X_\alpha$ which satisfies the characteristic property \ref{prop:characteristic_property_product}. Then setting $Y = \prod_{\alpha \in A}X_\alpha$ equipped with this topolohy in proposition \ref{prop:characteristic_property_product} and using that by corollary \ref{cor:projections_continuous} the mappings $f_\alpha = \pi_\alpha \circ f$ are continuous by composition of continuous functions yields that $\id$ is continuous and so the product topology is contained in the other one. Exchanging the roles of $Y$ and $\prod_{\alpha \in A}X_\alpha$ yields the desired equality. 
+\end{proof}
+
+\begin{proposition}[Minimality of the Product Topology]
+	Let $(X_\alpha)_{\alpha \in A}$ be a family of topological spaces. Endow $\prod_{\alpha \in A}X_\alpha$ with a topology such that every canoncical projection $\pi_\alpha: \prod_{\alpha \in A}X_\alpha \to X_\alpha$ is continuous. Then this topology contains the product topology.
+	\label{prop:minimality_product_topology}
+\end{proposition}
+
+\begin{proof}
+	Let $B$ be a basis element of the basis of the product topology on $\prod_{\alpha \in A}X_\alpha$. Thus 
+	\begin{equation}
+		B = \bigcap_{i = 1}^n \pi_{\alpha_i}^{-1}(U_{\alpha_i})
+	\end{equation}
+
+	\noindent for some open subsets $U_{\alpha_i} \subseteq X_{\alpha_i}$. Since each canonical projection $\pi_\alpha$ is continuous, we have that $B$ is contained in the topology.
+\end{proof}
+	
+\begin{definition}
+	Let $X$ be a topological space, $(x_n)_{n \in \mathbb{N}}$ be a sequence in $X$ and $x \in X$. The sequence $(x_n)_{n \in \mathbb{N}}$ is said to \bld{converge to $x$} if for every neighbourhood $U$ of $x$ there exists $N \in \mathbb{N}$ such that $x_n \in U$ for any $n > N$. 
+\end{definition}
+
+\begin{corollary}
+	Let $X$ be a topological space and $A \subseteq X$. If $(x_n)_{n \in \mathbb{N}}$ is a convergent sequence in $A$, i.e. $x_n \in A$ for any $n \in \mathbb{N}$, then its limit belongs to $\overline{A}$.
+	\label{cor:sequence_closure}
+\end{corollary}
+
+\begin{proof}
+	This is immediate by the characterization of proposition \ref{prop:characterization_closure}.
+\end{proof}
+
+\begin{proposition}
+	Let $(X_\alpha)_{\alpha \in A}$ be a family of topological spaces and $(x_n)_{n \in \mathbb{N}}$ be a sequence in $\prod_{\alpha \in A} X_\alpha$. Then $\lim_{n \to \infty}x_n = x$ if and only if $\lim_{n \to \infty} \pi_\alpha(x_n) = \pi_\alpha(x)$ for any $\alpha \in A$.
+	\label{prop:convergence_product}
+\end{proposition}
+
+\begin{proof}
+	Assume $\lim_{n \to \infty} x_n = x \in \prod_{\alpha \in A}X_\alpha$. Fix some $\alpha \in A$ and consider some neighbourhood $U$ of $\pi_\alpha(x)$. Then $\prod_{\beta \in A} U_\beta$ where $U_\beta = X_\beta$ for any $\beta \neq \alpha$ and $U_\beta = U$ for $\beta = \alpha$ is a neighbourhood of $x$ in $\prod_{\alpha \in A} X_\alpha$. Thus there exists some $N \in \mathbb{N}$ such that $x_n \in \prod_{\beta \in A} U_\beta$ whenever $n > N$. But then $\pi_\alpha(x_n) \in U$ for any $n > N$ and thus $\lim_{n \to \infty} \pi_\alpha(x_n) = \pi_\alpha(x)$. Conversly, suppose $\lim_{n \to \infty} \pi_\alpha(x_n) = \pi_\alpha(x)$ for any $\alpha \in A$. Let $U$ be some neighbourhood of $x$. Then by the basis criterion \ref{prop:basis_criterion} we find some basis element $B = \prod_{\alpha \in A} B_\alpha$, where $B_\alpha$ is open in $X_\alpha$ and $B_\alpha = X_\alpha$ for all but finitely many $\alpha \in A$, such that $x \in B \subseteq U$. If $B_\alpha \neq X_\alpha$, define $N_\alpha \in \mathbb{N}$ to be the number such that $n > N_\alpha$ implies $\pi_\alpha(x_n) \in B_\alpha$, otherwise let $N_\alpha := 1$. Thus $N:=\max\cbr[0]{N_\alpha : \alpha \in A}$ is bounded above and is therefore well defined. Hence $x_n \in U$ whenever $n > N$ and thus we have convergence.	
+\end{proof}
+
+\subsection{Connectedness and Compactness}
+
+\begin{definition}
+	Let $X$ be a topological space. If $X = U \cup V$ for some disjoint open sets $U,V \neq \varnothing$, $X$ is called \bld{disconnected}, otherwise $X$ is said to be \bld{connected}.
+\end{definition}
+
+\begin{definition}
+	Let $X$ be a topological space. An \bld{open cover} of $X$ is a family $(U_\alpha)_{\alpha \in A}$ of open subsets of $X$ such that $X = \bigcup_{\alpha \in A}U_\alpha$. A \bld{subcover} of $(U_\alpha)_{\alpha \in A}$ is a subfamily $(U_\alpha)_{\alpha \in A'}$, $A' \subseteq A$.	
+\end{definition}
+
+\begin{definition}
+	A topological space $X$ is said to be \bld{compact} if any open cover has a finite subcover.
+\end{definition}
+
+\begin{theorem}[Main Theorem on Compactness]
+	Let $X$ and $Y$ be topological spaces and $f: X \to Y$ be continuous.If $X$ is compact, then $f(X)$ is compact.
+	\label{thm:main_theorem_compactness}
+\end{theorem}
+
+\begin{proposition}
+	Every closed, bounded interval in $\mathbb{R}$ is compact.
+\end{proposition}
+
+\begin{theorem}[Extreme Value Theorem]
+	If $X$ is a compact space and $f: X \to \mathbb{R}$ is continuous, then $f$ is bounded and attains its maximum and minimum values on $X$.
+	\label{thm:extreme_value_theorem}
+\end{theorem}
+
+\section*{Exercises}
+
+\begin{exercise}
+	Prove that a mapping $f: X \to Y$ between two topological spaces $X$ and $Y$ is continuous if and only if for all $A \subseteq Y$ closed, $f^{-1}(Y)$ is closed in $X$. \textit{Hint:} Use that for $A,B \subseteq Y$ we have $f^{-1}(A \setminus B) = f^{-1}(A) \setminus f^{-1}(B)$.
+\end{exercise}
