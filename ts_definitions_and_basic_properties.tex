@@ -1,5 +1,6 @@
 \section{Definitions and Basic Notions}
 \subsection{Topologies}
+We roughly follow \cite[19 -- 38]{lee:topological_manifolds:2011}. For a more extended treating of general topology see chapter $2$, $3$ and $4$ in \cite{munkres:topology:2000}.
 
 \begin{definition}
 	Let $X$ be a set. A \bld{topology} on $X$ is a collection $\mathcal{T}$ of subsets of $X$ satisfying the following properties:
@@ -13,11 +14,17 @@
 \end{definition}
 
 \begin{example}[Topologies]
-	~
+	Let $X$ be a set. The reader may verify that the the following collections are indeed topologies on $X$.
 	\begin{enumerate}[label = \textup{(}\alph*\textup{)}]
-		\item Let $(X,\mathcal{T})$ be a topological space and let $S \subseteq X$. Then the collection $\mathcal{T}_S := \cbr[0]{S \cap U : U \in \mathcal{T}}$ is a topology on $S$.
+		\item The collection $\mathcal{P}(X)$ is a topology on $X$, called the \bld{discrete topology}.			
+		\item The collection $\cbr[0]{\varnothing,X}$ is a topology on $X$, called the \bld{trivial topology}.
+		\item Let $T$ be a topology on $X$ and let $S \subseteq X$. Then the collection $\mathcal{T}_S := \cbr[0]{S \cap U : U \in \mathcal{T}}$ is a topology on $S$.
 	\end{enumerate}
 \end{example}
+
+\begin{definition}
+	Let $X$ be a topological space and $x \in X$. An open set $U$ is called a \bld{neighbourhood of $x$} if $x \in U$.
+\end{definition}
 
 \begin{definition}
 	Let $(X,\mathcal{T})$ be a topological space and $A \subseteq X$. The \bld{closure of $A$ in $X$}, denoted by $\overline{A}$, is defined by 

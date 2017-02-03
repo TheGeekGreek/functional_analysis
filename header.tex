@@ -150,9 +150,13 @@
 \usepackage{setspace}
 \definecolor{ao(english)}{rgb}{0.0, 0.5, 0.0}
 
+\newlength{\textsize}
+\makeatletter
+\setlength{\textsize}{\f@size pt}
+\makeatother
 
 
 %Enumerations 
 %------------
 \usepackage{enumitem}
-\setlist[enumerate]{label=\textup{(}\roman*\textup{)}}
+\setlist[enumerate]{label=\textup{(}\roman*\textup{)}, leftmargin = 25pt}

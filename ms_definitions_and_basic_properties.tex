@@ -6,6 +6,7 @@
 
 \begin{proposition}
 	Let $(X,\mathcal{A},\mu)$ be a measure space, $(X,\mathcal{A}_\mu,\overline{\mu})$ be its completion and $f: X \to \intcc[0]{-\infty,\infty}$ $\mathcal{A}_\mu$-measurable. Then there exist $\mathcal{A}$-measurable functions $g,h: X \to \intcc[0]{-\infty,\infty}$ with $g \leq f \leq h$ and $g = h$ $\mu$-a.e.
+	\label{prop:approx_complete}
 \end{proposition}
 
 \begin{proof}
@@ -29,7 +30,40 @@
 		g_n \leq \varphi_n \leq h_n \qquad \text{and} \qquad g_n = h_n \>\mu\text{-a.e.}
 	\end{equation}
 
-	\noindent for any $n \in \mathbb{N}$.
+	\noindent for any $n \in \mathbb{N}$. Then clearly 
+	\begin{equation}
+		\limsup_{n \to \infty} g_n \leq f \leq \liminf_{n \to \infty}h_n
+	\end{equation}
+
+	\noindent fulfills the demanded properties. Now let $f$ be an arbitrary $\mathcal{A}_\mu$-measurable function. Then we write 
+	\begin{equation}
+		f = f^+ - f^-
+	\end{equation}
+
+	\noindent where
+	\begin{equation}
+		f^+(x) := \max(f(x),0) \qquad \text{and} \qquad f^-(x) := \max(-f(x),0)
+	\end{equation}
+
+	\noindent for $x \in X$. Then by the preceeding part there exist $\mathcal{A}$-measurable functions
+	\begin{equation}
+		g^+ \leq f^+ \leq h^+ \qquad \text{and} \qquad g^- \leq f^- \leq h^-
+	\end{equation}
+
+	\noindent such that $g^+ = h^+$ and $g^- = h^-$ holds $\mu$-a.e. Then 
+	\begin{equation}
+		g^+ - h^- \leq f \leq h^+ - g^-
+	\end{equation}
+
+	\noindent fulfills the desired properties.
+\end{proof}
+
+\begin{corollary}
+	Let $f: \mathbb{R}^n \to \intcc[0]{-\infty,\infty}$ be $\mathcal{M}_{\lambda^*}$-measurable. Then there exists a $\mathcal{B}(\mathbb{R}^n)$-measurable function $g$, such that $f = g$ $\lambda$-a.e.
+\end{corollary}
+
+\begin{proof}
+	This immediately follows by proposition \ref{prop:approx_complete} since the Lebesgue measure on $(\mathbb{R}^n,\mathcal{M}_{\lambda^*})$ is the completion of Lebesgue measure on $(\mathbb{R}^n,\mathcal{B}(\mathbb{R}^n))$.
 \end{proof}
 
 \section*{Exercises}
